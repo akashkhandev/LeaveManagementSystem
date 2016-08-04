@@ -57,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		die("Data not Saved");
 	}
 	$res = $db->getResult();  
-	print_r($db->lastId());
 }
 
 

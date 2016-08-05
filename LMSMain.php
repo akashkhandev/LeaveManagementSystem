@@ -22,11 +22,23 @@ $idArray = array();
 			echo "<tbody><tr>";
 			$statusString ='name="status'.$x.'"';
 			$num = $x + 1;
-			echo "<td>".$num."</td><td>".$res[$x]["GRNum"]."</td><td>".$res[$x]["LeaveType"]."</td><td>".$res[$x]["SDate"]."</td><td>".$res[$x]["EDate"]."</td><td>".$res[$x]["Reason"]."</td><td>".$res[$x]["Description"].'</td><td>'.$res[$x]["Date"].'</td><td><select '.$statusString.'><option value="Pending">Pending</option><option value="Approved">Approved</option><option value="Disapproved">Disapproved</option></select></td><td>'.$res[$x]["Date"].'</td></td>';
+			$pend = "";
+			if ($statusString == "Pending"){
+				$pend = " selected=\"selected\"";
+			}
+			$appr = "";
+			if ($statusString == "Approved"){
+				$appr = " selected=\"selected\"";
+			}
+			$disapp = "";
+			if ($statusString == "Disapproved"){
+				$disapp = " selected=\"selected\"";
+			}
+			echo "<td>".$num."</td><td>".$res[$x]["GRNum"]."</td><td>".""."</td><td>".$res[$x]["LeaveType"]."</td><td>".$res[$x]["SDate"]."</td><td>".$res[$x]["EDate"]."</td><td>".$res[$x]["Reason"]."</td><td>".$res[$x]["Description"].'</td><td>'.$res[$x]["Date"].'</td><td><select '.$statusString.'><option value="Pending" '.$pend.'>Pending</option><option value="Approved"'.$appr.'>Approved</option><option value="Disapproved"'.$disapp.'>Disapproved</option></select></td><td>'.$res[$x]["Date"].'</td></td>';
 			echo "</tr></tbody>";
 			
 			//print "Hello table!";
-			array_push($idArray, $res[$x]["GRNum"]);
+			array_push($idArray, $res[$x]["Id"]);
 		}
 		echo "</table>";
 		echo '<br><input type="submit" value="Submit" ></form>';

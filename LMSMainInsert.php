@@ -45,25 +45,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
 				
 			for($j=0; $j<count($idArray); $j++){
-				$db->insert('lms',array('Id'=>$idArray[$j],'Status'=>$statusArray[$j]));  // Table name, column names and respective values
+				$enString = 'Id="'.$idArray[$j].'"';
+				$db->update('lms',array('Status'=>$statusArray[$j]), $enString); // Table name, column names and values, WHERE conditions
 				
 				$res = $db->getResult();
+				
+				echo '<script language="javascript">';
+				echo 'location.href="LMSMainForm.php"';
+				echo '</script>';
 			}
-			
-	if ($db->rowsEffected()){
-		echo '<script language="javascript">';
-		echo 'alert("Successfully Saved"); location.href="LMSMainForm.php"';
-        echo '</script>';
-	}
-	else{
-		die("Data not Saved");
-	}
-	
 	}
 	else{
 		 die("Data not found");
 	}
-	
 }
 }
 function test_input($data) {
